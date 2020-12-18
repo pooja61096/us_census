@@ -1,7 +1,7 @@
-us_census
-=========
+us_census_visualization
+=======================
 
 .. toctree::
    :maxdepth: 4
 
-   us_census
+   us_census_visualization

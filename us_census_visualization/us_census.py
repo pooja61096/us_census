@@ -1,8 +1,6 @@
 import requests
 import json 
 import pandas as pd 
-import os
-import matplotlib.pyplot as plt
 import numpy as np
 
 
@@ -13,18 +11,19 @@ def AmComSurv(year, group, key, yr):
 
     Parameters
     ----------
-    year:
+    year: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
     group:
         Subgroup of population, indexed by list provided in API documentation.
-    key:
+    key: str
         API key requested from US census.gov website
-    yr:
+    yr: int
     Only inputs are 1, 3, or 5 for 1 year, 3 year, and 5 year data. If the input is 3 or 5, then the function subtracts from the year argument. Hence, if year is 2010 and yr is 3, data returned will be from 2007-2010.
         
     Returns
     -------
-    Pandas dataframe extracted with the inserted parameters from the American Community Survey.
+    dataframe
+        Pandas dataframe extracted with the inserted parameters from the American Community Survey.
 
     Examples
     --------
@@ -52,18 +51,19 @@ def AmComSurvSubjects(year, group, key, c=""):
 
     Parameters
     ----------
-    year:
+    year: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    group:
+    group: str
         Subgroup of population, indexed by list provided in API documentation.
     key:
         API key requested from US census.gov website
-    c:
+    c: str
         Gets subject tables or comparison profiles for a year given the group number in the american community index
         if c=c, then comparison table returns. Otherwise subject table is returned. 
             
     Returns
     -------
+    dataframe
     Pandas dataframe extracted with the inserted parameters from the American Community Survey.
 
     Examples
@@ -85,19 +85,20 @@ def AmComSurv_PopProfile(year, group, popgroup, key): #example: AmComSurv_PopPro
 
     Parameters
     ----------
-    year:
+    year: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    group:
+    group: str
         Subgroup of population, indexed by list provided in API documentation.
-    popgroup:
+    popgroup: str
         Subgroup of the population (more specificly indexed by demographics than the group parameter)
-    key:
+    key: str
         API key requested from US census.gov website
 
         
     Returns
     -------
-    Pandas dataframe extracted with the inserted parameters from the American Community Survey.
+    dataframe
+        Pandas dataframe extracted with the inserted parameters from the American Community Survey.
 
     Examples
     --------
@@ -123,17 +124,18 @@ def YrSupplemental(year, key,state= "*"):
 
     Parameters
     ----------
-    year:
+    year: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    state:
+    state: str
         takes state code in string format for state-wide information
-    key:
+    key: str
         API key requested from US census.gov website
 
         
     Returns
     -------
-    Pandas dataframe extracted with the inserted parameters from the Supplemental Year Survey 
+    dataframe
+        Pandas dataframe extracted with the inserted parameters from the Supplemental Year Survey 
 
     Examples
     --------
@@ -155,19 +157,20 @@ def entrepreneur(year,key, state= "*", micro= False):
 
     Parameters
     ----------
-    year:
+    year:int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    state:
+    state: str
         takes state code in string format for state-wide information
-    key:
+    key: str
         API key requested from US census.gov website, string format
-    micro:
+    micro: bool
         Boolean value specifying whether or not the return dataframe should have microdata or not
 
         
     Returns
     -------
-    Pandas dataframe extracted with the inserted parameters from the entrepreneurship survey
+    dataframe
+        Pandas dataframe extracted with the inserted parameters from the entrepreneurship survey
 
     Examples
     --------
@@ -198,11 +201,11 @@ def business(year, key, state= '*', micro= False):
 
     Parameters
     ----------
-    year:
+    year: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    state:
+    state: str
         takes state code in string format for state-wide information
-    key:
+    key: str
         API key requested from US census.gov website, string format
     micro:
         Boolean value specifying whether or not the return dataframe should have microdata or not
@@ -210,7 +213,8 @@ def business(year, key, state= '*', micro= False):
         
     Returns
     -------
-    Pandas dataframe extracted with the inserted parameters from the entrepreneurship survey
+    dataframe
+        Pandas dataframe extracted with the inserted parameters from the entrepreneurship survey
 
     Examples
     --------
@@ -241,17 +245,18 @@ def manufacturing(year,manu, key):
 
     Parameters
     ----------
-    year:
+    year: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    manu:
+    manu:str
         string for a manufacturing sector code
-    key:
+    key: str
         API key requested from US census.gov website, string format
 
         
     Returns
     -------
-    Pandas dataframe extracted with the inserted parameters from the entrepreneurship survey
+    dataframe
+        Pandas dataframe extracted with the inserted parameters from the entrepreneurship survey
 
     Examples
     --------
@@ -272,21 +277,22 @@ def state_manufacturing(key, year,manu, crosssection, state='*'): #cross-section
 
     Parameters
     ----------
-    year:
+    year: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    manu:
+    manu: str
         string for a manufacturing sector code
-    key:
+    key: str
         API key requested from US census.gov website, string format
 
-    crosssection:
+    crosssection: str
         only takes the string arguments 'state' or 'industry' to return a dataframe across the specified cross-section.
-    state:
+    state: str
         string argument for state code 
 
     Returns
     -------
-    Pandas dataframe extracted with the inserted parameters from the census manufacturing survey
+    dataframe
+        Pandas dataframe extracted with the inserted parameters from the census manufacturing survey
 
     Examples
     --------
@@ -311,19 +317,20 @@ def unemployed(year,manu, key,state='*'): #ex manu= 54 is professional, scientif
 
     Parameters
     ----------
-    year:
+    year: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    manu:
+    manu: str
         string for a manufacturing sector code
-    key:
+    key: str
         API key requested from US census.gov website, string format
 
-    state:
+    state: str
         string argument for state code 
 
     Returns
     -------
-    Pandas dataframe extracted with the inserted parameters from the census manufacturing survey
+    dataframe
+        Pandas dataframe extracted with the inserted parameters from the census manufacturing survey
 
     Examples
     --------
@@ -345,17 +352,18 @@ def county_business_patterns(year, manu, state='*'):
 
     Parameters
     ----------
-    year:
+    year: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    manu:
+    manu: str
         string for a manufacturing sector code
 
-    state:
+    state: str
         string argument for state code 
 
     Returns
     -------
-    Pandas dataframe extracted with the inserted parameters from the census manufacturing survey. No key necessary for this API.
+    dataframe
+        Pandas dataframe extracted with the inserted parameters from the census manufacturing survey. No key necessary for this API.
 
     Examples
     --------
@@ -375,23 +383,24 @@ def get_econ(year1,subset, betweentime= False, year2='', m1= '', m2= ''): #subse
     """ Function that extracts economic time-series data.
     Parameters
     ----------
-    year1:
+    year1: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    subset:
+    subset: str
         string argument, can equal either 'hv' or 'resconst', 'hv' for current housing, 'resconcst' for new residential construction.
 
-    betweentime:
+    betweentime: bool
         boolean for whether function will return time series or cross-section, across various years or one year only.
-    year2:
+    year2: str
         string for the end year of the time series if betweentime= True
-    m1:
+    m1: str
         optional argument for specific month of the beginning year of time series
-    m2:
+    m2: str
         optional argument for the end month of the end year of time series, year2. 
 
     Returns
     -------
-    Pandas dataframe extracted with economic indicators across time or in a cross-section about housing and new constructions. 
+    dataframe
+        Pandas dataframe extracted with economic indicators across time or in a cross-section about housing and new constructions. 
 
     Examples
     --------
@@ -422,17 +431,18 @@ def health(year, state='*', county='*'):
     nationwide data for all states and counties. May have to make search parameters smaller.
     Parameters
     ----------
-    year:
+    year: int
         Only full 4-integer values for years where the Community Survey is available, 2009-2019
-    state:
+    state: str
         string argument for state code.
-    county:
+    county: str
         string argument for county code.
 
 
     Returns
     -------
-    Pandas dataframe extracted with information about state and county insured versus uninsured populations, and a quickdescription of the dataframe
+    dataframe
+        Pandas dataframe extracted with information about state and county insured versus uninsured populations, and a quickdescription of the dataframe
     
 
     Examples
